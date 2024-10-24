@@ -1,18 +1,19 @@
 <script setup>
-import { ref } from 'vue';
+import { ref } from "vue";
 
-
-const count = ref([0,0,0,0,0,0,0,0])
-const frequency = ref([0,0,0,0,0,0])
-const len = ref(8)
+const count = ref([0, 0, 0, 0, 0, 0, 0, 0]);
+const frequency = ref([0, 0, 0, 0, 0, 0]);
+const len = ref(8);
 
 const throwDice = () => {
-  count.value = Array.from({ length: len.value }, () => Math.ceil(Math.random() * 6));
-  count.value.sort((a, b) => a - b)
-  frequency.value = [0,0,0,0,0,0]
+  count.value = Array.from({ length: len.value }, () =>
+    Math.ceil(Math.random() * 6)
+  );
+  count.value.sort((a, b) => a - b);
+  frequency.value = [0, 0, 0, 0, 0, 0];
   for (let i = 0; i < count.value.length; i++) {
-  frequency.value[count.value[i]-1]++;
-}
+    frequency.value[count.value[i] - 1]++;
+  }
 };
 </script>
 
@@ -20,8 +21,8 @@ const throwDice = () => {
   <h1>DiceVue3</h1>
 
   <div class="card">
-    <button type="button" @click="throwDice">Throw dice</button><br>
-    <input type="number "v-model="len">
+    <button type="button" @click="throwDice">Throw dice</button><br />
+    <input type="number " v-model="len" />
     <table>
       <tr>
         <th>Dice Value</th>
@@ -35,6 +36,7 @@ const throwDice = () => {
       </tr>
       <tr>
         <th>Frequency</th>
+        <!-- TODO: gebruik v-for loop -->
         <td>{{ frequency[0] }},</td>
         <td>{{ frequency[1] }},</td>
         <td>{{ frequency[2] }},</td>
@@ -45,21 +47,18 @@ const throwDice = () => {
       </tr>
       <tr>
         <th>Off-set</th>
-        <td>{{ frequency[0]*6/len }}</td>
-        <td>{{ frequency[1]*6/len }}</td>
-        <td>{{ frequency[2]*6/len }}</td>
-        <td>{{ frequency[3]*6/len }}</td>
-        <td>{{ frequency[4]*6/len }}</td>
-        <td>{{ frequency[5]*6/len }}</td>
+        <!-- TODO: gebruik v-for loop -->
+        <td>{{ (frequency[0] * 6) / len }}</td>
+        <td>{{ (frequency[1] * 6) / len }}</td>
+        <td>{{ (frequency[2] * 6) / len }}</td>
+        <td>{{ (frequency[3] * 6) / len }}</td>
+        <td>{{ (frequency[4] * 6) / len }}</td>
+        <td>{{ (frequency[5] * 6) / len }}</td>
       </tr>
     </table>
-    <p>
-      Dice thrown: {{ count }}
-    </p>
-    
+    <p>Dice thrown: {{ count }}</p>
   </div>
 </template>
-
 
 <style scoped>
 .read-the-docs {
